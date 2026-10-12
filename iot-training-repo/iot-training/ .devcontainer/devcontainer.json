@@ -1,0 +1,14 @@
+{
+  "name": "IoT training: Node-RED + MQTT",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "forwardPorts": [
+    1880
+  ],
+  "portsAttributes": {
+    "1880": {
+      "label": "Node-RED",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
