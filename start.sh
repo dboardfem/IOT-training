@@ -8,3 +8,4 @@ else
 fi
 echo "Starting Node-RED... open the PORTS tab and click the globe icon next to port 1880"
 node-red
+
