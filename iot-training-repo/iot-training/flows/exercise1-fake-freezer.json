@@ -1,0 +1,71 @@
+[
+  {
+    "id": "a1b2c3d4e5f60001",
+    "type": "tab",
+    "label": "Exercise 1 - Fake freezer",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "a1b2c3d4e5f60002",
+    "type": "inject",
+    "z": "a1b2c3d4e5f60001",
+    "name": "every 2 s",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "2",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 140,
+    "y": 120,
+    "wires": [
+      [
+        "a1b2c3d4e5f60003"
+      ]
+    ]
+  },
+  {
+    "id": "a1b2c3d4e5f60003",
+    "type": "function",
+    "z": "a1b2c3d4e5f60001",
+    "name": "Fake freezer",
+    "func": "// Around -18 \u00b0C; 1 in 10 readings is a warm spike\nlet temp = -18 + (Math.random() * 4 - 2);\nif (Math.random() < 0.1) temp = -12 + Math.random() * 3;\n\nmsg.topic = \"plant/stores/freezer01/env\";\nmsg.payload = {\n    temp: Number(temp.toFixed(1)),\n    hum: Number((40 + Math.random() * 10).toFixed(1)),\n    time: new Date().toISOString()\n};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 340,
+    "y": 120,
+    "wires": [
+      [
+        "a1b2c3d4e5f60004"
+      ]
+    ]
+  },
+  {
+    "id": "a1b2c3d4e5f60004",
+    "type": "debug",
+    "z": "a1b2c3d4e5f60001",
+    "name": "reading",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 540,
+    "y": 120,
+    "wires": []
+  }
+]
